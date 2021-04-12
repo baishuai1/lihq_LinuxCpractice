@@ -27,8 +27,21 @@ int main(){
         }
 
     sqlist_display(list);
-
+    int ret = 23;
+    //ret = sqlist_find(list,&ret);
+    printf("the data loc is:%d\n",ret);    
+    printf("list->last:%d\n",list->last);    
+    for(i = 0;i < sizeof(arr)/sizeof(*arr); i++)
+    {
+        ret = sqlist_delete(list,0);
+        printf("the data loc is:%d\n",ret);    
+    } 
+   // sqlist_delete(list,0);
+    sqlist_display(list);
+    printf("list->last:%d\n",list->last);    
    // sqlist_distory();
+   ret =  sqlist_isempty(list);
+   printf("isempty?:%d\n",ret);
     
 
 

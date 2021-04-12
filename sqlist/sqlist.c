@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "sqlist.h"
 
 
@@ -40,23 +41,39 @@ int sqlist_insert(sqlist *me,int i,datatype *data)
 }
 int sqlist_delete(sqlist *me,int i)
 {
-
+    int j;
+    //if(me->last == DATASIZE-1)
+      //  return -1;
+    if(i < 0 || i > me->last)
+        return -1;
+    for(j = i+1; j <= me->last;j++)
+        me->data[j-1] = me->data[j];
+    
+    me->last--;
+    return 0;
 }
 int sqlist_find(sqlist *me,datatype *data)
 {
-
+    int i;
+    for(i = 0; i < me->last; i++)
+    {
+        if(me->data[i] == *data)
+            return i+1;
+    }
+    return -1;
 }
 int sqlist_isempty(sqlist *me)
 {
-
+    return (me->last < 0 || me->last > (DATASIZE -1));
 }
 int sqlist_setempty(sqlist *me)
 {
-
+    me->last = -1;
+    return 0;
 }
 int sqlist_getnum(sqlist *me)
 {
-
+    return me->last+1;
 }
 void sqlist_display(sqlist *me)
 {
@@ -68,11 +85,20 @@ void sqlist_display(sqlist *me)
     printf("\n");
     return ;
 }
+
 int sqlist_destory(sqlist *me)
 {
-
+    free(me);
 }
 int sqlist_union(sqlist *list1,sqlist *list2)
 {
-
+    int i;
+    for(i = 0; i < list2->last;i++)
+    {
+        if(sqlist_find(list1,list2->data[i]) < 0)
+        {
+            if(sqlist_insert(list1,list1->last,list2->data[i]) !< 0);
+             return 0;
+        }
+    }
 }
