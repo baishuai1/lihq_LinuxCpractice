@@ -6,9 +6,9 @@
 
 
 
-all:main
+all:nohead
 
-main:main.o nohead.o
+nohead:main.o nohead.o
 	$(CC) $^ -o $@
 
 
